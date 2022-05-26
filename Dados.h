@@ -27,18 +27,11 @@ extern Maquina* maquinas;
 typedef struct Operacao {
 	int id;
 	int idJob;
-	int posicao;
+	int idMaq;
+	int tempo;
 	struct Operacao* next;
 }Operacao;
 extern Operacao* operacoes;
-
-typedef struct Execucao {
-	int idOperacao;
-	int idMaquina;
-	int tempo;
-	struct Execucao* next;
-}Execucao;
-extern Execucao* execucoes;
 
 /**
  * Manipulção de Jobs (Árvore)
@@ -56,19 +49,17 @@ void ListaJobs(Job* jobs);
  * Manipulção de Máquinas
  */
 Maquina* InserirMaquina(int id);
+Maquina* InserirListaMaquina(Maquina* maquinas, Maquina* novo);
 void ListaMaquinas(Maquina* maquinas);
 void MostraListaMaquinas(Maquina* maquinas);
 
 /**
  * Manipulção de Operações
  */
-Operacao* InserirOperacao(int id, int idJob, int posicao);
+Operacao* InserirOperacao(int id, int idJob, int idMaq, int tempo);
+Operacao* InserirListaOperacao(Operacao* operacoes, Operacao* novo);
 void ListaOperacao(Operacao* operacoes);
 void MostraListaOperacao(Operacao* operacoes);
+Operacao* ProcurarOperacao(Operacao* operacoes, int id);
+Operacao* Remover(Operacao* operacoes, int idJob);
 
-/**
- * Manipulção de Execuções
- */
-Execucao* InserirExecucao(int idOperacao, int idMaquina, int tempo);
-void ListaExecucao(Execucao* execucoes);
-void MostraListaExecucao(Execucao* execucoes);

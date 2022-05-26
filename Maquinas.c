@@ -4,21 +4,40 @@
 
 Maquina* InserirMaquina(int id)
 {
-    Maquina* novamaquina = (Maquina*)malloc(sizeof(Maquina));
-    if (novamaquina == NULL){
-        return NULL;
-    }
-    novamaquina->id = id;
-    novamaquina->ocupado = false;
-    novamaquina->next = NULL;
+	Maquina* novamaquina = (Maquina*)malloc(sizeof(Maquina));
+	if (novamaquina == NULL) {
+		return NULL;
+	}
+	novamaquina->id = id;
+	novamaquina->ocupado = false;
+	novamaquina->next = NULL;
 }
 
-void ListaMaquinas(Maquina* maquinas) {
+Maquina* InserirListaMaquina(Maquina* maquinas, Maquina* novo){
 
-	if (maquinas != NULL)
+	Maquina* aux = maquinas;
+
+	if (maquinas == NULL)
 	{
-		printf("Id da máquina = %d\n", maquinas->id);
-		printf("Ocupação da máquina = %d\n\n", maquinas->ocupado);
+		maquinas = novo;
+	}
+	else
+	{
+		while (aux->next != NULL) {
+			aux = aux->next;
+		}
+		aux->next = novo;
+	}
+	return maquinas;
+	
+}
+
+void ListaMaquinas(Maquina* maquina) {
+
+	if (maquina != NULL)
+	{
+		printf("Id da máquina = %d\n", maquina->id);
+		printf("Ocupação da máquina = %d\n\n", maquina->ocupado);
 	}
 }
 
